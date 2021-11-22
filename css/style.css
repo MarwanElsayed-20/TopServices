@@ -1280,7 +1280,8 @@ a {
   z-index: 99999;
   transition: var(--main-transition);
   border: 2px solid white;
-  display: none
+  display: none;
+  text-align: center;
 }
 .up:hover {
   border-radius: 10px;
