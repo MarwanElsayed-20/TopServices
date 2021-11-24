@@ -879,9 +879,6 @@ a {
   width: 50%;
   transition: var(--main-transition)
 }
-/* .our-clients .our-clients-container .clients-img img:hover {
-  width: 65%
-} */
 .our-clients .more-clients {
   display: none;
 }
