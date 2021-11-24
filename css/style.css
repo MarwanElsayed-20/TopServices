@@ -151,8 +151,13 @@ a {
 }
 .navbar {
   padding: 0 !important;
-  background: white;
-  border-bottom: 1px solid rgb(242 243 244);
+  width: 100%;
+  background: rgb(0 0 0 / 0%);
+  z-index: 1;
+}
+.nav-border-main {
+  border-bottom: 1px solid rgb(64 64 64);
+  position: absolute !important;
 }
 .navbar-nav .nav-link {
   position: relative;
@@ -222,6 +227,9 @@ a {
   position: relative;
 }
 @media (max-width: 767.98px) {
+  .navbar {
+    position: relative !important;
+  }
   .navbar-brand img {
     width: 45px
   }
@@ -254,12 +262,12 @@ a {
 /* end navBar */
 /* start header */
 .header {
-  height: calc(100vh - (92.5px + (92.5px / 2)));
+  height: calc(100vh - 46.25px);
   position: relative;
 }
 .header .carousel-inner {
-  height: calc(100vh - (92.5px + (92.5px / 2)));
-  z-index: -1;
+  height: calc(100vh - 46.25px);
+  z-index: 0;
   position: relative;
 }
 .header .carousel-inner::before {
@@ -278,15 +286,51 @@ a {
 .header .carousel-inner .carousel-item .carousel-item-info {
   position: absolute;
   text-align: center;
-  top: calc(50% - 92.5px);
+  top: calc(50% - 45.5px);
   left: 50%;
   z-index: 1;
   transform: translate(-50%, -50%);
 }
-.header .carousel-inner .carousel-item .carousel-item-info h1 {
+.header .carousel-inner .carousel-item .carousel-item-info h1 a {
   color: rgb(255 255 255);
   font-weight: bold;
   font-size: 4rem;
+  position: relative;
+  transition: var(--main-transition)
+}
+.header .carousel-inner .carousel-item .carousel-item-info h1 a:hover {
+  color: vaR(--main-color)
+}
+.header .carousel-inner .carousel-item .carousel-item-info h1 a::before {
+  position: absolute;
+  content: "\f25a";
+  bottom: 15px;
+  font-family: 'Font Awesome 5 Free';
+  left: 20px;
+  font-size: 35px;
+  color: var(--main-color);
+  transform: rotate(0deg);
+  transition: var(--main-transition);
+  animation: arrow-animate-head .90s infinite;
+}
+.header .carousel-inner .carousel-item .carousel-item-info h1 a:hover::before {
+  color: white
+}
+@keyframes arrow-animate-head {
+  0%,
+  75%,
+  90%,
+  100% {
+    transform: rotate(0deg);
+  }
+  15%,
+  45% {
+    transform: rotate(3deg);
+  }
+  30%,
+  60% {
+    transform: rotate(-9deg);
+  }
 }
 .header .carousel-inner .carousel-item .carousel-item-info p {
   color: var(--text-color);
@@ -296,16 +340,16 @@ a {
   height: 100vh
 }
 .header .carousel-indicators-container {
-  background: rgb(255 255 255);
+  background: transparent;
   position: absolute;
   height: 92.5px;
   bottom: 0;
   width: 100%;
-  border-bottom: 2px solid var(--text-color)
+  border-top: 1px solid rgb(64 64 64);
 }
 .header .carousel-indicators {
   width: 100%;
-  background: white;
+  background: transparent;
   height: 92.5px;
   margin: auto !important;
 }
@@ -314,8 +358,6 @@ a {
   height: 100% !important;
   margin: 0 !important;
   border: none !important;
-  border-right: 1px solid var(--text-color) !important;
-  border-left: 1px solid var(--text-color) !important;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -325,9 +367,7 @@ a {
   opacity: 1 !important;
   transition: var(--alt-transition);
   position: relative;
-}
-.header .carousel-indicators [data-bs-target]:hover {
-  background: var(--main-color) !important;
+  background: transparent;
 }
 .header .carousel-indicators [data-bs-target]:hover span {
   background: white;
@@ -358,7 +398,7 @@ a {
 }
 .header .carousel-indicators .active {
   position: relative;
-  background: var(--main-color) !important;
+  background: transparent !important;
 }
 .header .carousel-indicators .active span {
   background: white;
@@ -378,25 +418,39 @@ a {
     top: calc(50% - 96.75px);
     width: 100%
   }
-  .header .carousel-inner .carousel-item .carousel-item-info h1 {
+  .header .carousel-inner .carousel-item .carousel-item-info h1 a {
     font-size: 2rem
+  }
+  .header .carousel-inner .carousel-item .carousel-item-info h1 a::before {
+    bottom: 5px;
+    left: 15px;
+    font-size: 20px
   }
   .header .carousel-inner .carousel-item .carousel-item-info p {
     font-size: 15px
   }
+  .header .carousel-indicators-container {
+    border: none;
+  }
   .header .carousel-indicators [data-bs-target] {
-    width: 0;
+    border-radius: 50%;
+    width: 15px !important;
+    height: 15px !important;
+    background: rgb(64 156 193 / 25%) !important;
+    margin: 5px !important;
   }
   .header .carousel-indicators [data-bs-target] span {
-    font-size: 12px;
+    /* font-size: 12px;
     width: 20px;
     margin: 0 3px;
     height: 20px;
-    line-height: 20px;
+    line-height: 20px; */
+    display: none
   }
   .header .carousel-indicators [data-bs-target] h2 {
-    font-size: 9px;
-    margin: 0 2px 0 0;
+    /* font-size: 9px;
+    margin: 0 2px 0 0; */
+    display: none
   }
 }
 /* end header */
